@@ -97,6 +97,12 @@ namespace Paster
                 }
             }
         }
+
+        private void linkLabel_Github_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel_Github.LinkVisited = true;
+            System.Diagnostics.Process.Start("https://github.com/ZHider/Paster");
+        }
     }
 
     public static class SendInputHandler
