@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace Paster
 {
@@ -251,12 +241,12 @@ namespace Paster
             }
         }
 
-        public static void SendKey(char c)
+        public static bool SendKey(char c)
         {
             if (c == '\r')
             {
                 // 忽略 \r
-                return;
+                return true;
             }
 
             SendInputHandler.INPUT[] inputs;
@@ -269,7 +259,7 @@ namespace Paster
             {
                 inputs = SendInputHandler.InputObjUnicode(c);
             }
-            SendInputHandler.SendInput(inputs);
+            return SendInputHandler.SendInput(inputs) != 0;
 
         }
 
