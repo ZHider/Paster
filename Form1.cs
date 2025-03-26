@@ -19,13 +19,22 @@ namespace Paster
         protected override void WndProc(ref Message m)
         {
             const int WM_HOTKEY = 0x0312;
-            if (m.Msg == WM_HOTKEY && m.WParam.ToInt32() == 517)
+            if (m.Msg == WM_HOTKEY)
             {
-                HotkeyCallback();
+                switch (m.WParam.ToInt32())
+                {
+                    case 517:
+                        this.HotkeyCallback();
+                        break;
+                    case 518:
+                        StopDoPaste = true;
+                        break;
+                }
             }
             base.WndProc(ref m);
         }
 
+        private bool StopDoPaste = false;
         private void HotkeyCallback()
         {
             this.DoPaste();
@@ -39,7 +48,8 @@ namespace Paster
             int DelayStandard = int.Parse(tb_DelayStandard.Text);
             int DelayMax = int.Parse(tb_DelayVariance.Text) + DelayStandard;
 
-            Utils.DoPaste(text, DelayStandard, DelayMax);
+            Utils.DoPaste(text, DelayStandard, DelayMax, ref this.StopDoPaste);
+            StopDoPaste = false;
         }
 
         private void bt1_Paste_Click(object sender, EventArgs e)
@@ -118,12 +128,17 @@ namespace Paster
                     this.Handle, 517,
                     HotKey.Keys2KeyModifiers[MyHotkeyRecord.Modifiers],
                     MyHotkeyRecord.Hotkey
+                ) && HotKey.RegisterHotKey(
+                    this.Handle, 518,
+                    HotKey.Keys2KeyModifiers[Keys.None],
+                    Keys.Escape
                 );
                 HotkeyStatusRefresh(done);
             }
             else
             {
-                done = HotKey.UnregisterHotKey(this.Handle, 517);
+                done = HotKey.UnregisterHotKey(this.Handle, 517)
+                    && HotKey.UnregisterHotKey(this.Handle, 518);
                 HotkeyStatusRefresh(!done);
             }
             return done;
@@ -134,7 +149,7 @@ namespace Paster
             if (!HotkeyRegistered)
             {
                 MessageBox.Show(
-                    "注册热键失败，请重试。\n错误码：" + Utils.GetLastError(),
+                    "注册热键失败。\n错误码：" + Utils.GetLastError(),
                     "错误", MessageBoxButtons.OK, MessageBoxIcon.Error
                 );
                 return;
@@ -147,7 +162,7 @@ namespace Paster
             if (HotkeyRegistered)
             {
                 MessageBox.Show(
-                    "注销热键失败，请重试。\n错误码：" + Utils.GetLastError(),
+                    "注销热键失败。\n错误码：" + Utils.GetLastError(),
                     "错误", MessageBoxButtons.OK, MessageBoxIcon.Error
                 );
                 return;

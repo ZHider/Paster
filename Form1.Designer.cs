@@ -40,11 +40,11 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_manual = new System.Windows.Forms.TabPage();
             this.tabPage_hotkey = new System.Windows.Forms.TabPage();
-            this.button_regHotkey = new System.Windows.Forms.Button();
-            this.button_unregHotkey = new System.Windows.Forms.Button();
-            this.label_status_regHotkey = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label_status_regHotkey = new System.Windows.Forms.Label();
+            this.button_unregHotkey = new System.Windows.Forms.Button();
+            this.button_regHotkey = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPage_manual.SuspendLayout();
             this.tabPage_hotkey.SuspendLayout();
@@ -191,15 +191,35 @@
             this.tabPage_hotkey.TabIndex = 1;
             this.tabPage_hotkey.Text = "热键";
             // 
-            // button_regHotkey
+            // label5
             // 
-            this.button_regHotkey.Location = new System.Drawing.Point(193, 101);
-            this.button_regHotkey.Name = "button_regHotkey";
-            this.button_regHotkey.Size = new System.Drawing.Size(75, 23);
-            this.button_regHotkey.TabIndex = 9;
-            this.button_regHotkey.Text = "注册热键";
-            this.button_regHotkey.UseVisualStyleBackColor = true;
-            this.button_regHotkey.Click += new System.EventHandler(this.button_regHotkey_Click);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 11);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(346, 45);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "选中热键框，按下任意键作为热键。\r\n注册热键后，按下热键，程序立刻开始，Esc停止。\r\n字符间的延迟设置同 <手动> 标签页。";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(22, 105);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(67, 15);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "注册状态";
+            // 
+            // label_status_regHotkey
+            // 
+            this.label_status_regHotkey.AutoSize = true;
+            this.label_status_regHotkey.ForeColor = System.Drawing.Color.Firebrick;
+            this.label_status_regHotkey.Location = new System.Drawing.Point(94, 105);
+            this.label_status_regHotkey.Name = "label_status_regHotkey";
+            this.label_status_regHotkey.Size = new System.Drawing.Size(22, 15);
+            this.label_status_regHotkey.TabIndex = 11;
+            this.label_status_regHotkey.Text = "●";
             // 
             // button_unregHotkey
             // 
@@ -212,35 +232,15 @@
             this.button_unregHotkey.UseVisualStyleBackColor = true;
             this.button_unregHotkey.Click += new System.EventHandler(this.button_unregHotkey_Click);
             // 
-            // label_status_regHotkey
+            // button_regHotkey
             // 
-            this.label_status_regHotkey.AutoSize = true;
-            this.label_status_regHotkey.ForeColor = System.Drawing.Color.Firebrick;
-            this.label_status_regHotkey.Location = new System.Drawing.Point(94, 105);
-            this.label_status_regHotkey.Name = "label_status_regHotkey";
-            this.label_status_regHotkey.Size = new System.Drawing.Size(22, 15);
-            this.label_status_regHotkey.TabIndex = 11;
-            this.label_status_regHotkey.Text = "●";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 105);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(67, 15);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "注册状态";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 11);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(277, 45);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "选中热键框，按下任意键作为热键。\r\n注册热键后，按下热键，程序立刻开始。\r\n字符间的延迟设置同 <手动> 标签页。";
+            this.button_regHotkey.Location = new System.Drawing.Point(193, 101);
+            this.button_regHotkey.Name = "button_regHotkey";
+            this.button_regHotkey.Size = new System.Drawing.Size(75, 23);
+            this.button_regHotkey.TabIndex = 9;
+            this.button_regHotkey.Text = "注册热键";
+            this.button_regHotkey.UseVisualStyleBackColor = true;
+            this.button_regHotkey.Click += new System.EventHandler(this.button_regHotkey_Click);
             // 
             // Form1
             // 

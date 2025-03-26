@@ -61,13 +61,14 @@ namespace Paster
 
         }
 
-        public static void DoPaste(string text, int DelayStandard, int DelayMax)
+        public static void DoPaste(string text, int DelayStandard, int DelayMax, ref bool Stop)
         {
             if (DelayMax == 0)
             {
                 // 当不延迟时不调用 Sleep
                 foreach (var c in text)
                 {
+                    if (Stop) { return; }
                     Utils.SendKey(c);
                 }
             }
@@ -75,6 +76,7 @@ namespace Paster
             {
                 foreach (var c in text)
                 {
+                    if (Stop) { return; }
                     Utils.SendKey(c);
                     System.Threading.Thread.Sleep(DelayStandard);
                 }
@@ -85,6 +87,7 @@ namespace Paster
                 Random random = new Random();
                 foreach (var c in text)
                 {
+                    if (Stop) { return; }
                     Utils.SendKey(c);
                     delay = random.Next(DelayStandard, DelayMax);
                     System.Threading.Thread.Sleep(delay);
@@ -255,14 +258,15 @@ namespace Paster
         public static readonly Dictionary<Keys, KeyModifiers> Keys2KeyModifiers = new Dictionary<Keys, KeyModifiers>
         {
             {Keys.Control, KeyModifiers.Ctrl},
-            {Keys.ControlKey, KeyModifiers.Ctrl},
             {Keys.Shift, KeyModifiers.Shift},
-            {Keys.ShiftKey, KeyModifiers.Shift},
             {Keys.Alt, KeyModifiers.Alt},
             {Keys.Menu, KeyModifiers.Alt},
             {Keys.LWin, KeyModifiers.WindowsKey},
             {Keys.RWin, KeyModifiers.WindowsKey},
             {Keys.None, KeyModifiers.None},
+            {Keys.Control | Keys.Alt, KeyModifiers.Ctrl | KeyModifiers.Alt},
+            {Keys.Control | Keys.Shift, KeyModifiers.Ctrl | KeyModifiers.Shift},
+            {Keys.Alt | Keys.Shift, KeyModifiers.Alt | KeyModifiers.Shift},
         };
 
         private static readonly Dictionary<Keys, string> KeyModifiersToString = new Dictionary<Keys, string>
